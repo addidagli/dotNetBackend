@@ -1,0 +1,24 @@
+gerekli bilgileri yazip kayit olmak için(POST)
+
+https://localhost:44384/api/auth/register
+-----------------------------------------
+kullanici eklemek için(register ile ayni sey)(POST)
+
+https://localhost:44384/api/users/adduser
+-----------------------------------------
+kullanici güncellemek için(POST)
+
+https://localhost:44384/api/users/updateuser
+-----------------------------------------
+kullanici silmek için(POST)
+
+https://localhost:44384/api/users/deleteuser
+-----------------------------------------
+tüm kullanicilari çekmek için(GET)
+
+https://localhost:44384/api/users/getalluser
+-----------------------------------------
+id ye göre tek bi kullanici çekmek için
+
+https://localhost:44384/api/users/getuserbyid?id=1
+
