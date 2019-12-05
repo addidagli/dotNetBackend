@@ -6,16 +6,14 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IuserService
+    public interface IProductService
     {
-        IDataResult<user> GetById(int userId);
-        IDataResult<List<user>> GetList();
-        IDataResult<List<user>> GetListByCategory(int categoryId);
-
-        IResult Add(user user);
-        IResult Delete(user user);
-        IResult Update(user user);
-
+        IDataResult<Product> GetById(int productId);
+        IDataResult<List<Product>> GetList();
+        IDataResult<List<Product>> GetListByCategory(int categoryId);
+        IResult Add(Product product);
+        IResult Delete(Product product);
+        IResult Update(Product product);
 
     }
 }

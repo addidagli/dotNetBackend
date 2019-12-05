@@ -18,7 +18,27 @@ tüm kullanicilari çekmek için(GET)
 
 https://localhost:44384/api/users/getalluser
 -----------------------------------------
-id ye göre tek bi kullanici çekmek için
+id ye göre tek bi kullanici çekmek için(GET)
 
 https://localhost:44384/api/users/getuserbyid?id=1
+-----------------------------------------
+organizasyon eklemek için (POST)
 
+https://localhost:44384/api/organizasyon/addorganizasyon
+--------------------------------------------------------
+organizasyon güncellemek için(POST)
+
+https://localhost:44384/api/organizasyon/updateorganizasyon
+-----------------------------------------------------------
+organizasyon silmek için(POST)
+
+https://localhost:44384/api/organizasyon/deleteorganizasyon
+--------------------------------------------------------
+Tüm organizasyonlari çekmek için(GET)
+
+https://localhost:44384/api/organizasyon/getallorganizasyon
+--------------------------------------------------------
+id ye göre tek bi organizasyon çekmek için(GET)
+
+https://localhost:44384/api/organizasyon/getorganizasyonbyid?id=4
+--------------------------------------------------------

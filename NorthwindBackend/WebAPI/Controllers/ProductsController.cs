@@ -12,85 +12,87 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class usersController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-        private IuserService _userService;
+        private IProductService _productService;
 
-        public usersController(IuserService userService)
+        public ProductsController(IProductService productService)
         {
-            _userService = userService;
+            _productService = productService;
         }
 
         [HttpGet("getall")]
-        [Authorize(Roles = "user.List")]
+        [Authorize(Roles = "Product.List")]
         public IActionResult GetList()
         {
-            var result = _userService.GetList();
+            var result = _productService.GetList();
             if (result.Success)
             {
                 return Ok(result.Data);
             }
-            return BadRequest(result.Message);
 
+            return BadRequest(result.Message);
         }
 
         [HttpGet("getlistbycategory")]
-        public IActionResult GetByCategory(int categoryId)
+        public IActionResult GetListByCategory(int categoryId)
         {
-            var result = _userService.GetListByCategory(categoryId);
+            var result = _productService.GetListByCategory(categoryId);
             if (result.Success)
             {
                 return Ok(result.Data);
             }
-            else
-            {
-                return BadRequest(result.Message);
-            }
+
+            return BadRequest(result.Message);
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int userId)
+        public IActionResult GetById(int productId)
         {
-            var result = _userService.GetById(userId);
+            var result = _productService.GetById(productId);
             if (result.Success)
             {
                 return Ok(result.Data);
             }
-            return BadRequest(result.Message);
 
+            return BadRequest(result.Message);
         }
 
         [HttpPost("add")]
-        public IActionResult Add(user user)
+        public IActionResult Add(Product product)
         {
-            var result = _userService.Add(user);
+            var result = _productService.Add(product);
             if (result.Success)
             {
                 return Ok(result.Message);
             }
-            return BadRequest(result.Message);
-        }
 
-        [HttpPost("delete")]
-        public IActionResult Delete(user user)
-        {
-            var result = _userService.Delete(user);
-            if (result.Success)
-            {
-                return Ok(result.Message);
-            }
             return BadRequest(result.Message);
         }
 
         [HttpPost("update")]
-        public IActionResult Update(user user)
+        public IActionResult Update(Product product)
         {
-            var result = _userService.Update(user);
+            var result = _productService.Update(product);
             if (result.Success)
             {
                 return Ok(result.Message);
             }
+
             return BadRequest(result.Message);
         }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(Product product)
+        {
+            var result = _productService.Delete(product);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+
+            return BadRequest(result.Message);
+        }
+
     }
 }

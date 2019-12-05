@@ -11,45 +11,45 @@ using Business.Constants;
 
 namespace Business.Concrete
 {
-    public class userManager : IuserService
+    public class productManager : IProductService
     {
-        private IuserDal _userDal;
+        private IProductDal _productDal;
 
-        public userManager(IuserDal userDal)
+        public productManager(IProductDal productDal)
         {
-            _userDal = userDal;
+            _productDal = productDal;
         }
-        public IResult Add(user user)
+        public IResult Add(Product product)
         {
-            _userDal.Add(user);
+            _productDal.Add(product);
             return new SuccessResult(Messages.userAdded);
         }
 
-        public IResult Delete(user user)
+        public IResult Delete(Product user)
         {
-            _userDal.Delete(user);
+            _productDal.Delete(user);
             return new SuccessResult(Messages.userDeleted);
         }
-        public IResult Update(user user)
+        public IResult Update(Product user)
         {
-            _userDal.Update(user);
+            _productDal.Update(user);
             return new SuccessResult(Messages.userUpdated);
         }
 
-        public IDataResult<user> GetById(int userId)
+        public IDataResult<product> GetById(int userId)
         {
 
-            return new SuccessDataResult<user>(_userDal.Get(p => p.userId == userId));
+            return new SuccessDataResult<product>(_productDal.Get(p => p.userId == userId));
         }
 
-        public IDataResult<List<user>> GetList()
+        public IDataResult<List<product>> GetList()
         {
-            return new SuccessDataResult<List<user>>(_userDal.GetList().ToList());
+            return new SuccessDataResult<List<product>>(_productDal.GetList().ToList());
         }
 
-        public IDataResult<List<user>> GetListByCategory(int categoryId)
+        public IDataResult<List<product>> GetListByCategory(int categoryId)
         {
-            return new SuccessDataResult<List<user>>(_userDal.GetList(p => p.CategoryId == categoryId).ToList());
+            return new SuccessDataResult<List<product>>(_productDal.GetList(p => p.CategoryId == categoryId).ToList());
         }
 
 

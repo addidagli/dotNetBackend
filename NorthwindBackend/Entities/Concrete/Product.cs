@@ -5,15 +5,14 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class user : IEntity
+    public class Product : IEntity
     {
-        public int userId { get; set; }
-        public string userName { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
         public int CategoryId { get; set; }
         public string QuantityPerUnit { get; set; }
         public decimal UnitPrice { get; set; }
         public short UnitsInStock { get; set; }
-
-
     }
+
 }
