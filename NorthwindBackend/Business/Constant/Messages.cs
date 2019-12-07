@@ -8,7 +8,9 @@ namespace Business.Constants
     public static class Messages
     {
         public static string ProductAdded = "Ürün başarıyla eklendi";
+
         public static string ProductDeleted = "Ürün başarıyla silindi";
+
         public static string ProductUpdated = "Ürün başarıyla güncellendi";
 
         public static string UserNotFound = "Kullanıcı Bulunamadı";
@@ -34,5 +36,21 @@ namespace Business.Constants
         public static string OrganizasyonUpdated = "Organizasyon başarıyla güncellendi";
 
         public static string OrganizasyonDeleted = "Organizasyon başarıyla silindi";
+
+        public static string EtkinlikAdded = "Etkinlik başarıyla eklendi";
+
+        public static string EtkinlikUpdated = "Etkinlik başarıyla güncellendi";
+
+        public static string EtkinlikDeleted = "Etkinlik başarıyla silindi";
+
+        public static string FirmaAdded = "Firma başarıyla eklendi";
+
+        public static string FirmaUpdated = "Firma başarıyla güncellendi";
+
+        public static string FirmaDeleted = "Firma başarıyla silindi";
+
+        public static string FirmaAlreadyExist = "Firma zaten var";
+
+        public static string OrtakTabloEklendi = "Ortak Tablo Eklendi";
     }
 }

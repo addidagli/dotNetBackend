@@ -28,6 +28,17 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<OrganizasyonManager>().As<IOrganizasyonService>();
             builder.RegisterType<EfOrganizasyonDal>().As<IOrganizasyonDal>();
+
+            builder.RegisterType<EtkinlikManager>().As<IEtkinlikService>();
+            builder.RegisterType<EfEtkinlikDal>().As<IEtkinlikDal>();
+
+            builder.RegisterType<FirmaManager>().As<IFirmaService>();
+            builder.RegisterType<EfFirmaDal>().As<IFirmaDal>();
+
+            builder.RegisterType<EtkinlikFirmaManager>().As<IEtkinlikFirmaService>();
+            builder.RegisterType<EfEtkinlikFirmaDal>().As<IEtkinlikFirmaDal>();
+
+
         }
     }
 }

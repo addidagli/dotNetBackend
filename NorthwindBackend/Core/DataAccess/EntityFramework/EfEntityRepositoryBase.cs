@@ -68,5 +68,19 @@ namespace Core.DataAccess.EntityFramework
                     : context.Set<TEntity>().Where(filter).ToList();
             }
         }
+
+        public void Add(TEntity entity, TEntity entity2)
+        {
+            using (var context = new TContext())
+            {
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+                var addedEntity2 = context.Entry(entity2);
+                addedEntity2.State = EntityState.Added;
+                context.SaveChanges();
+            }
+           
+        }
     }
 }

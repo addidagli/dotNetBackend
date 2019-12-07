@@ -16,8 +16,11 @@ namespace Core.DataAccess
 
         void Add(T entity);
 
+        void Add(T entity, T entity2);
+
         void Update(T entity);
 
         void Delete(T entity);
+
     }
 }
