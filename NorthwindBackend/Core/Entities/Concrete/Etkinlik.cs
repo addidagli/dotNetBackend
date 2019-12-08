@@ -19,5 +19,7 @@ namespace Entities.Concrete
         public bool Aktif { get; set; }
         public bool Sil { get; set; }
         public string Yer { get; set; }
+
+        public int firmaninId { get; set; }
     }
 }

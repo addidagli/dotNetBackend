@@ -8,5 +8,6 @@ namespace DataAccess.Abstract
 {
     public interface IEtkinlikFirmaDal : IEntityRepository<EtkinlikFirma>
     {
+        List<EtkinlikFirma> GetEtkinlikFirma(Firma firma);
     }
 }

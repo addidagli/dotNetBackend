@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -22,6 +23,7 @@ namespace Business.Concrete
         public IResult AddEtkinlik(Etkinlik etkinlik)
         {
             _etkinlikDal.Add(etkinlik);
+            _etkinlikDal.AddEtkinlik(etkinlik);
             return new SuccessResult(Messages.EtkinlikAdded);
         }
         public IResult UpdateEtkinlik(Etkinlik etkinlik)
@@ -38,6 +40,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Etkinlik>> GetAllEtkinlik()
         {
+            //return new SuccessDataResult<List<Etkinlik>>(_etkinlikDal.GetList(p => p.Id < 10).ToList());
             return new SuccessDataResult<List<Etkinlik>>(_etkinlikDal.GetList().ToList());
         }
 

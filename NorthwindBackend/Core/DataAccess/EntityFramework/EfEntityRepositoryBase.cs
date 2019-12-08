@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Core.Entities;
+using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.DataAccess.EntityFramework
@@ -12,6 +14,7 @@ namespace Core.DataAccess.EntityFramework
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
     {
+        
         public void Add(TEntity entity)
         {
             using (var context = new TContext())
@@ -21,6 +24,7 @@ namespace Core.DataAccess.EntityFramework
                 context.SaveChanges();
             }
         }
+
         public void Update(TEntity entity)
         {
             using (var context = new TContext())
@@ -69,18 +73,31 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public void Add(TEntity entity, TEntity entity2)
+        public IList<TEntity> GetEtkinlikFirma(Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
             {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-                var addedEntity2 = context.Entry(entity2);
-                addedEntity2.State = EntityState.Added;
+                return filter == null
+                    ? context.Set<TEntity>().ToList()
+                    : context.Set<TEntity>().Where(filter).ToList();
+            }
+        }
+
+      
+
+        public void AddEtkinlik(Etkinlik entity)
+        {
+            using (var context = new TContext())
+            {
+                var obje = new EtkinlikFirma
+                {
+                    EtkinlikId = entity.Id,
+                    FirmaId = entity.firmaninId
+                };
+                context.AddRange(obje);
                 context.SaveChanges();
             }
-           
         }
+
     }
 }
