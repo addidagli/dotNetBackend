@@ -1,3 +1,7 @@
+---------------------------------------
+USER
+---------------------------------------
+
 gerekli bilgileri yazip kayit olmak için(POST)
 
 https://localhost:44384/api/auth/register
@@ -18,10 +22,15 @@ tüm kullanicilari çekmek için(GET)
 
 https://localhost:44384/api/users/getalluser
 -----------------------------------------
-id ye göre tek bi kullanici çekmek için(GET)
+id ye göre tek bir kullanici çekmek için(GET)
 
 https://localhost:44384/api/users/getuserbyid?id=1
 -----------------------------------------
+
+--------------------------------------
+ORGANIZASYON
+---------------------------------------
+
 organizasyon eklemek için (POST)
 
 https://localhost:44384/api/organizasyon/addorganizasyon
@@ -38,7 +47,57 @@ Tüm organizasyonlari çekmek için(GET)
 
 https://localhost:44384/api/organizasyon/getallorganizasyon
 --------------------------------------------------------
-id ye göre tek bi organizasyon çekmek için(GET)
+id ye göre tek bir organizasyon çekmek için(GET)
 
 https://localhost:44384/api/organizasyon/getorganizasyonbyid?id=4
+--------------------------------------------------------
+
+-----------------------------------------------
+ETKINLIK
+-----------------------------------------------
+
+etkinlik eklemek için (POST)
+
+https://localhost:44384/api/etkinlik/addetkinlik
+--------------------------------------------------------
+etkinlik güncellemek için(POST)
+
+https://localhost:44384/api/etkinlik/updateetkinlik
+-----------------------------------------------------------
+etkinlik silmek için(POST)
+
+https://localhost:44384/api/etkinlik/deleteetkinlik
+--------------------------------------------------------
+Tüm etkinlikleri çekmek için(GET)
+
+https://localhost:44384/api/etkinlik/getalletkinlik
+--------------------------------------------------------
+id ye göre tek bir etkinlik çekmek için(GET)
+
+https://localhost:44384/api/etkinlik/getetkinlikbyid?id=1
+--------------------------------------------------------
+
+-----------------------------------------------
+FIRMA
+-----------------------------------------------
+
+firma eklemek için (POST)
+
+https://localhost:44384/api/firma/addfirma
+--------------------------------------------------------
+firma güncellemek için(POST)
+
+https://localhost:44384/api/firma/updatefirma
+-----------------------------------------------------------
+firma silmek için(POST)
+
+https://localhost:44384/api/firma/deletefirma
+--------------------------------------------------------
+Tüm firmalari çekmek için(GET)
+
+https://localhost:44384/api/firma/getallfirma
+--------------------------------------------------------
+id ye göre tek bir firma çekmek için(GET)
+
+https://localhost:44384/api/firma/getfirmabyid?id=1
 --------------------------------------------------------
