@@ -20,9 +20,10 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public IResult AddUser(User user)
+        public IResult AddUser(User user,int? firmaId)
         {
             _userDal.Add(user);
+            _userDal.AddFirmaCalisani(user, firmaId);
             return new SuccessResult(Messages.UserAdded);
         }
 
@@ -58,23 +59,27 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(p => p.Id == Id));
         }
 
-        /*public IDataResult<List<User>> GetListOrganizatorByOrganization(int organizationId)
+        /*public IDataResult<List<User>> GetUserByEtkinlikId(int etkinlikId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(p => p.organizationId == organizationId));
+            return new SuccessDataResult<List<User>>(_userDal.GetUser(p => p.EtkinlikId == etkinlikId).ToList());
+        }*/
+
+
+            //aynı tabloda bulunan bi değere göre liste çekmek için
+        //public IDataResult<List<User>> GetUserByFirmaId(int fid)
+        //{
+        //    return new SuccessDataResult<List<User>>(_userDal.GetListFilter(p => p.fid == fid).ToList());
+
+        //}
+
+        public IDataResult<List<User>> GetUsersByUserIds(List<int> userIds)
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetListFilter(p => userIds.Contains(p.Id)).ToList());
         }
 
-        public IDataResult<List<User>> GetListUserByActivity(int activityId)
+        /*public IDataResult<List<User>> GetUserByFirmaId(int firmaId)
         {
-            return new SuccessDataResult<User>(_userDal.Get(p => p.activityId == activityId));
-        }
-
-        public IDataResult<List<User>> GetListUserByCompany(int companyId)
-        {
-            return new SuccessDataResult<User>(_userDal.Get(p => p.companyId == companyId));
-        }
-        */
-
-
-
+            return new SuccessDataResult<List<User>>(_userDal.GetUser(p => p.EtkinlikId == etkinlikId).ToList());
+        }*/
     }
 }

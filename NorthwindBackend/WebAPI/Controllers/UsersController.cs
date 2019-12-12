@@ -5,26 +5,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
+        private IFirmaCalisaniService _firmaCalisaniService;
         
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IFirmaCalisaniService firmaCalisaniService)
         {
+            _firmaCalisaniService = firmaCalisaniService;
             _userService = userService;
         }
 
         [HttpPost("adduser")]
-        public IActionResult Add(User user)
+        public IActionResult Add(User user,int? firmaId)
         {
-            var result = _userService.AddUser(user);
+            //User _user = new User();
+            //UserDataUpdate(_user, user);
+            var result = _userService.AddUser(user,firmaId);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -46,9 +52,20 @@ namespace WebAPI.Controllers
         [HttpPost("updateuser")]
         public IActionResult Update(User user)
         {
+            //User _user = new User();
+           // UserDataUpdate(_user, user);
             var result = _userService.UpdateUser(user);
             if (result.Success)
             {
+                //FirmaCalisani firmaCalisani = new FirmaCalisani();
+               // firmaCalisani.FirmaId = user.firmaId;
+                //firmaCalisani.KullaniciId = user.id;
+                //firmaCalisani.IsDelege = false;
+                //var resultCalisan = _firmaCalisaniService.AddFirmaCalisani(firmaCalisani);
+                //if (resultCalisan.Success)
+                {
+                    //return Ok(resultCalisan.Message);
+                }
                 return Ok(result.Message);
             }
             return BadRequest(result.Message);
@@ -75,5 +92,34 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        [HttpGet("getuserbyfirmaid")]
+        public IActionResult GetListFilter(int firmaId)
+        {
+            var result = _firmaCalisaniService.GetUserIdsByFirmaId(firmaId);
+            if (result.Success)
+            {
+                var resultUser = _userService.GetUsersByUserIds(result.Data);
+                if (resultUser.Success)
+                {
+                    return Ok(resultUser.Data);
+                }
+                else
+                {
+                    return BadRequest(resultUser.Message);
+                }
+            }
+            return BadRequest(result.Message);
+        }
+
+        /*void UserDataUpdate(User _user, Entities.Dtos.UserOut user)
+        {
+            _user.AdSoyad = user.adSoyad;
+            _user.KullaniciAdi = user.kullaniciAdi;
+            _user.Email = user.email;
+            _user.Sifre = user.sifre;
+            _user.Tarih = user.tarih;
+            _user.Telefon = user.telefon;
+        }*/
     }
 }

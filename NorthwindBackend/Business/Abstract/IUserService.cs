@@ -12,16 +12,19 @@ namespace Business.Abstract
         List<OperationClaim> GetClaims(User user);
         User GetByMail(string email);
 
-        IResult AddUser(User user);
+        IResult AddUser(User user, int? firmaId);
         IResult DeleteUser(User user);
         IResult UpdateUser(User user);
-
         IDataResult<List<User>> GetAllUser();
         IDataResult<User> GetUserById(int Id);
-        /*IDataResult<List<User>> GetListUserByActivity(int activityId);
-        IDataResult<List<User>> GetListUserByCompany(int companyId);
-        IDataResult<List<User>> GetListOrganizatorByOrganization(int organizationId);*/
 
-       
+        //IDataResult<List<User>> GetUserByEtkinlikId(int etkinlikId);
+
+        //aynı tabloda bulunan bi değere göre liste çekmek için
+        IDataResult<List<User>> GetUsersByUserIds(List<int> userIds);
+
+        //IDataResult<List<User>> GetListOrganizatorByOrganization(int organizationId);
+
+
     }
 }

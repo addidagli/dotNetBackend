@@ -15,6 +15,7 @@ namespace Entities.Dtos
             public bool Admin { get; set; }
    
             public string Sehir { get; set; }
+            public int fid { get; set; }
         
     }
 }

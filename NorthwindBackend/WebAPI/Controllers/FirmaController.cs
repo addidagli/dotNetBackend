@@ -9,10 +9,39 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    class Example
+    {
+        public string Title { get; set; }
+        public string ShortTitle { get; set; }
+    }
+
     [Route("api/[controller]")]
     [ApiController]
     public class FirmaController : ControllerBase
     {
+        List<Example> examples = new List<Example> {
+            new Example
+            {
+                ShortTitle = "Deneme",
+                Title = "Test"
+            },
+            new Example
+            {
+                ShortTitle = "Deneme",
+                Title = "Test"
+            },
+            new Example
+            {
+                ShortTitle = "Deneme",
+                Title = "Test"
+            },
+            new Example
+            {
+                ShortTitle = "Deneme",
+                Title = "Test"
+            }
+        };
+
         private IFirmaService _firmaService;
 
         public FirmaController(IFirmaService etkinlikService)
@@ -22,13 +51,23 @@ namespace WebAPI.Controllers
 
         [HttpPost("addfirma")]
         public IActionResult Add(Firma firma)
-        { 
+        {
+            //List<string> shortTitles = examples.Where(a => a.Title == "Deneme").Select(b=>b.ShortTitle).ToList();
+            try
+            {
                 var result = _firmaService.AddFirma(firma);
                 if (result.Success)
                 {
                     return Ok(result.Message);
                 }
-                return BadRequest(result.Message); 
+                return BadRequest(result.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+            
         }
 
         [HttpPost("deletefirma")]

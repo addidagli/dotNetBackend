@@ -38,6 +38,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EtkinlikFirmaManager>().As<IEtkinlikFirmaService>();
             builder.RegisterType<EfEtkinlikFirmaDal>().As<IEtkinlikFirmaDal>();
 
+            builder.RegisterType<FirmaCalisaniManager>().As<IFirmaCalisaniService>();
+            builder.RegisterType<EfFirmaCalisaniDal>().As<IFirmaCalisaniDal>();
+
 
         }
     }

@@ -23,6 +23,7 @@ namespace DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Etkinlik> TblEtkinlik { get; set; }
         public DbSet<Firma> TblFirma { get; set; }
         public DbSet<EtkinlikFirma> TblEtkinlikFirma { get; set; }
+        public DbSet<FirmaCalisani> TblFirmaCalisani { get; set; }
 
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     }

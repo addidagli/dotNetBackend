@@ -54,5 +54,7 @@ namespace Business.Concrete
         {
             return _firmaDal.GetEtkinlik(firma);
         }
+
+      
     }
 }

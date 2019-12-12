@@ -62,8 +62,9 @@ namespace Business.Concrete
                 Aktif = true,
                 Sil = false,
                 IsAdmin = true,
+                fid = userForRegisterDto.fid
             };
-            _userService.AddUser(user);
+            _userService.AddUser(user,userForRegisterDto.fid);
             return new SuccessDataResult<User>(user,Messages.UserRegistered);
         }
 

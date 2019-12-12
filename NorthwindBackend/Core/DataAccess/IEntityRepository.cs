@@ -13,11 +13,15 @@ namespace Core.DataAccess
         T Get(Expression<Func<T, bool>> id);
 
         IList<T> GetList(Expression<Func<T, bool>> filter = null);
+        IList<T> GetListFilter(Expression<Func<T, bool>> filter);
 
         IList<T> GetUser(Expression<Func<T, bool>> filter = null);
-        IList<T> GetEtkinlikFirma(Expression<Func<T, bool>> filter = null);
+        
+
 
         void AddEtkinlik(Etkinlik entity);
+
+        void AddFirmaCalisani(User entity,int? firmaId);
 
         void Add(T entity);
 

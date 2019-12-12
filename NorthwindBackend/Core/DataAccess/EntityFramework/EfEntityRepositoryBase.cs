@@ -73,18 +73,6 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public IList<TEntity> GetEtkinlikFirma(Expression<Func<TEntity, bool>> filter = null)
-        {
-            using (var context = new TContext())
-            {
-                return filter == null
-                    ? context.Set<TEntity>().ToList()
-                    : context.Set<TEntity>().Where(filter).ToList();
-            }
-        }
-
-      
-
         public void AddEtkinlik(Etkinlik entity)
         {
             using (var context = new TContext())
@@ -99,5 +87,34 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
+        public void AddFirmaCalisani(User entity,int? firmaId)
+        {
+            if(firmaId != 0)
+            {
+                using (var context = new TContext())
+                {
+                    var obje = new FirmaCalisani
+                    {
+                        KullaniciId = entity.Id,
+                        FirmaId = entity.fid
+                    };
+                    context.AddRange(obje);
+                    context.SaveChanges();
+                }
+            }
+            
+        }
+
+        public IList<TEntity> GetListFilter(Expression<Func<TEntity, bool>> filter)
+        {
+            using (var context = new TContext())
+            {
+                return filter == null
+                    ? context.Set<TEntity>().ToList()
+                    : context.Set<TEntity>().Where(filter).ToList();
+            }
+        }
+
+      
     }
 }

@@ -11,6 +11,8 @@ using System.Text;
 
 namespace Business.Concrete
 {
+
+    ///select eklendi ..
     public class EtkinlikManager:IEtkinlikService
     {
         IEtkinlikDal _etkinlikDal;
@@ -40,10 +42,22 @@ namespace Business.Concrete
 
         public IDataResult<List<Etkinlik>> GetAllEtkinlik()
         {
-            //return new SuccessDataResult<List<Etkinlik>>(_etkinlikDal.GetList(p => p.Id < 10).ToList());
             return new SuccessDataResult<List<Etkinlik>>(_etkinlikDal.GetList().ToList());
         }
 
+
+        //Etkinliklerin idlerini çeker
+        public IDataResult<List<int>> GetAllEtkinlikId()
+        {
+            return new SuccessDataResult<List<int>>(_etkinlikDal.GetList().Select(a => a.Id).ToList());
+        }
+
+
+        //etkinlikadına göre idleri çeker
+        public IDataResult<int> GetAllEtkinlikIdWithName(string etkinlikAdi)
+        {
+            return new SuccessDataResult<int>(_etkinlikDal.Get(b => b.EtkinlikAdi == etkinlikAdi).Id);
+        }
         public IDataResult<Etkinlik> GetEtkinlikById(int Id)
         {
             return new SuccessDataResult<Etkinlik>(_etkinlikDal.Get(p => p.Id == Id));
