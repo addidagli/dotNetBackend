@@ -37,34 +37,35 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
 
-            /*if(!HashingHelper.VerifyPasswordHash(userForLoginDto.Password,userToCheck.PasswordHash,userToCheck.PasswordSalt))
+            if(!HashingHelper.VerifyPasswordHash(userForLoginDto.sifre,userToCheck.Sifrele,userToCheck.SifreCoz))
             {
                 return new ErrorDataResult<User>(Messages.PasswordError);
-            }*/
+            }
 
             return new SuccessDataResult<User>(userToCheck, Messages.SuccessfulLogin);
             
         }
 
-        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
+        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string sifre)
         {
-            byte[] passwordHash, passwordSalt;
-            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            byte[] sifrele, sifrecoz;
+            HashingHelper.CreatePasswordHash(sifre, out sifrele, out sifrecoz);
             var user = new User
             {
                 Email = userForRegisterDto.Email,
                 AdSoyad = userForRegisterDto.AdSoyad,
-                Sifre = userForRegisterDto.Sifre,
+                
                 KullaniciAdi = userForRegisterDto.KullaniciAdi,
                 Telefon = userForRegisterDto.Telefon,
                 Tarih = DateTime.Now,
                 Sehir = userForRegisterDto.Sehir,
                 Aktif = true,
                 Sil = false,
+                Sifrele = sifrele,
+                SifreCoz = sifrecoz,
                 IsAdmin = true,
-                fid = userForRegisterDto.fid
             };
-            _userService.AddUser(user,userForRegisterDto.fid);
+            _userService.AddUser(user);
             return new SuccessDataResult<User>(user,Messages.UserRegistered);
         }
 

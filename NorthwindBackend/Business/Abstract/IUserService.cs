@@ -12,9 +12,9 @@ namespace Business.Abstract
         List<OperationClaim> GetClaims(User user);
         User GetByMail(string email);
 
-        IResult AddUser(User user, int? firmaId);
+        IResult AddUser(User user);
         IResult DeleteUser(User user);
-        IResult UpdateUser(User user);
+        IResult UpdateUser(User user, int? firmaId);
         IDataResult<List<User>> GetAllUser();
         IDataResult<User> GetUserById(int Id);
 

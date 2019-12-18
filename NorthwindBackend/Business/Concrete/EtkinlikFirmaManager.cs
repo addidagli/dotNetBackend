@@ -5,6 +5,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -27,6 +28,11 @@ namespace Business.Concrete
         public List<EtkinlikFirma> GetEtkinlikFirma(Firma firma)
         {
             return _etkinlikFirmaDal.GetEtkinlikFirma(firma);
+        }
+
+        public IDataResult<List<int>> GetEtkinlikIdsByFirmaId(int firmaId)
+        {
+            return new SuccessDataResult<List<int>>(_etkinlikFirmaDal.GetListFilter(a => a.FirmaId == firmaId).Select(b => b.EtkinlikId).ToList());
         }
     }
 }

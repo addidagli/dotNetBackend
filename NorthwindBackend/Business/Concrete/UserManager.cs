@@ -20,16 +20,17 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public IResult AddUser(User user,int? firmaId)
+        public IResult AddUser(User user)
         {
             _userDal.Add(user);
-            _userDal.AddFirmaCalisani(user, firmaId);
+            //_userDal.AddFirmaCalisani(user, firmaId);
             return new SuccessResult(Messages.UserAdded);
         }
 
-        public IResult UpdateUser(User user)
+        public IResult UpdateUser(User user, int? firmaId)
         {
             _userDal.Update(user);
+            _userDal.AddFirmaCalisani(user, firmaId);
             return new SuccessResult(Messages.UserUpdated);
         }
 
@@ -76,6 +77,13 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<User>>(_userDal.GetListFilter(p => userIds.Contains(p.Id)).ToList());
         }
+
+        public IResult DeleteUser(User user, int? firmaId)
+        {
+            throw new NotImplementedException();
+        }
+
+        
 
         /*public IDataResult<List<User>> GetUserByFirmaId(int firmaId)
         {

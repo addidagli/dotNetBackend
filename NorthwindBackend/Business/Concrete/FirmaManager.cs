@@ -55,6 +55,9 @@ namespace Business.Concrete
             return _firmaDal.GetEtkinlik(firma);
         }
 
-      
+        public IDataResult<List<Firma>> GetFirmaByFirmaIds(List<int> firmaIds)
+        {
+            return new SuccessDataResult<List<Firma>>(_firmaDal.GetListFilter(p => firmaIds.Contains(p.Id)).ToList());
+        }
     }
 }

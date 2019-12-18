@@ -19,6 +19,13 @@ namespace WebAPI.Controllers
             _authService = authService;
         }
 
+        [Route("signin")]
+
+        public IActionResult SignIn(String provider)
+        {
+            return Challenge(new Microsoft.AspNetCore.Authentication.AuthenticationProperties { RedirectUri = "/" },provider);
+        }
+
         [HttpPost("login")]
 
         public ActionResult Login(UserForLoginDto userForLoginDto)

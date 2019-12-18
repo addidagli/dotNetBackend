@@ -12,8 +12,7 @@ namespace Business.Abstract
         IResult AddFirmaCalisani(FirmaCalisani firmaCalisani);
 
         IDataResult<List<int>> GetUserIdsByFirmaId(int firmaId);
-
-
+        //IDataResult<List<int>> GetFirmaIdsByUserId(int userId);
 
     }
 }

@@ -15,10 +15,12 @@ namespace WebAPI.Controllers
     public class EtkinlikController : ControllerBase
     {
         private IEtkinlikService _etkinlikService;
+        private IEtkinlikFirmaService _etkinlikFirmaService;
 
-        public EtkinlikController(IEtkinlikService etkinlikService)
+        public EtkinlikController(IEtkinlikService etkinlikService, IEtkinlikFirmaService etkinlikFirmaService)
         {
             _etkinlikService = etkinlikService;
+            _etkinlikFirmaService = etkinlikFirmaService;
         }
 
         [HttpPost("addetkinlik")]
@@ -72,6 +74,25 @@ namespace WebAPI.Controllers
             if (result.Success)
             {
                 return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpGet("getetkinlikbyfirmaid")]
+        public IActionResult GetListFilter(int firmaId)
+        {
+            var result = _etkinlikFirmaService.GetEtkinlikIdsByFirmaId(firmaId);
+            if (result.Success)
+            {
+                var resultUser = _etkinlikService.GetEtkinlikByEtkinlikIds(result.Data);
+                if (resultUser.Success)
+                {
+                    return Ok(resultUser.Data);
+                }
+                else
+                {
+                    return BadRequest(resultUser.Message);
+                }
             }
             return BadRequest(result.Message);
         }

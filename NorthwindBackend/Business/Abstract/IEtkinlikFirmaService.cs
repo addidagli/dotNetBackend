@@ -10,5 +10,7 @@ namespace Business.Abstract
     {
         List<EtkinlikFirma> GetEtkinlikFirma(Firma firma);
         IResult AddEtkinlikFirma(EtkinlikFirma etkinlikFirma);
+
+        IDataResult<List<int>> GetEtkinlikIdsByFirmaId(int etkinlikId);
     }
 }

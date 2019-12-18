@@ -17,6 +17,7 @@ namespace Business.Abstract
         IDataResult<Firma> GetFirmaById(int Id);
 
         List<Etkinlik> GetEtkinlik(Firma firma);
+        IDataResult<List<Firma>> GetFirmaByFirmaIds(List<int> firmaIds);
 
     }
 }

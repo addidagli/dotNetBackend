@@ -6,28 +6,29 @@ namespace Core.Utilities.Security.Hashing
 {
     public class HashingHelper
     {
-        public static void CreatePasswordHash(string sifre,out byte[] passwordHash,out byte[] passwordSalt)
+        public static void CreatePasswordHash(string sifre, out byte[] sifrele, out byte[] sifrecoz)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(sifre));
+                sifrecoz = hmac.Key;
+                sifrele = hmac.ComputeHash(Encoding.UTF8.GetBytes(sifre));
             }
         }
 
-        public static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        public static bool VerifyPasswordHash(string sifre, byte[] sifrele, byte[] sifrecoz)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(sifrecoz))
             {
-                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-                for(int i = 0; i< computedHash.Length; i++)
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(sifre));
+                for (int i = 0; i < computedHash.Length; i++)
                 {
-                    if (computedHash[i] != passwordHash[i])
+                    if (computedHash[i] != sifrele[i])
                     {
                         return false;
                     }
                 }
             }
+
             return true;
         }
     }

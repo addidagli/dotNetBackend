@@ -34,17 +34,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult <List<int>>(_firmaCalisaniDal.GetListFilter(a => a.FirmaId == firmaId).Select(b => b.KullaniciId).ToList());
         }
-
-        /*public List<FirmaCalisani> GetFirmaCalisani(Firma firma)
+        /*public IDataResult<List<int>> GetFirmaIdsByUserId(int kullaniciId)
         {
-            
+            return new SuccessDataResult <List<int>>(_firmaCalisaniDal.GetListFilter(a => a.KullaniciId == kullaniciId).Select(b => b.FirmaId).ToList());
         }*/
-
-
-        /*public IDataResult<List<FirmaCalisani>> GetFirmaCalisani(int firmaId)
-        {
-            return new SuccessDataResult<List<FirmaCalisani>> (_firmaCalisaniDal.GetFirmaCalisani().Select(p => p.FirmaId == firmaId).ToList());
-            
-        }*/
+        
     }
 }

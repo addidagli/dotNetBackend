@@ -26,11 +26,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("adduser")]
-        public IActionResult Add(User user,int? firmaId)
+        public IActionResult Add(User user)
         {
             //User _user = new User();
             //UserDataUpdate(_user, user);
-            var result = _userService.AddUser(user,firmaId);
+            var result = _userService.AddUser(user);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -50,11 +50,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("updateuser")]
-        public IActionResult Update(User user)
+        public IActionResult Update(User user, int? firmaId)
         {
             //User _user = new User();
            // UserDataUpdate(_user, user);
-            var result = _userService.UpdateUser(user);
+            var result = _userService.UpdateUser(user, firmaId);
             if (result.Success)
             {
                 //FirmaCalisani firmaCalisani = new FirmaCalisani();

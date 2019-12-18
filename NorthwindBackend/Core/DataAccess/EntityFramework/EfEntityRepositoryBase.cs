@@ -114,7 +114,5 @@ namespace Core.DataAccess.EntityFramework
                     : context.Set<TEntity>().Where(filter).ToList();
             }
         }
-
-      
     }
 }

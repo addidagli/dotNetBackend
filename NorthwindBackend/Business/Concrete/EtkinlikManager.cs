@@ -63,6 +63,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Etkinlik>(_etkinlikDal.Get(p => p.Id == Id));
         }
 
-        
+        public IDataResult<List<Etkinlik>> GetEtkinlikByEtkinlikIds(List<int> etkinlikIds)
+        {
+            return new SuccessDataResult<List<Etkinlik>>(_etkinlikDal.GetListFilter(p => etkinlikIds.Contains(p.Id)).ToList());
+        }
+
+
     }
 }

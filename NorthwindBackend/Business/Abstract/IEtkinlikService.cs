@@ -15,5 +15,7 @@ namespace Business.Abstract
         IDataResult<List<Etkinlik>> GetAllEtkinlik();
         IDataResult<Etkinlik> GetEtkinlikById(int Id);
 
+        IDataResult<List<Etkinlik>> GetEtkinlikByEtkinlikIds(List<int> etkinlikIds);
+
     }
 }

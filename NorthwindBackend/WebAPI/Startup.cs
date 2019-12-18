@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.Jwt;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,12 @@ namespace WebAPI
             {
                 options.AddPolicy("AllowOrigin", builder => builder.WithOrigins("http://localhost:3000"));
             });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
            
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -50,7 +57,20 @@ namespace WebAPI
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
-                });
+                })
+                /*.AddTwitter(twitterOptions => 
+                {
+                    twitterOptions.ConsumerKey = "";
+                    twitterOptions.ConsumerSecret = "";
+                    
+                })*/
+                .AddFacebook(facebookOptions => 
+                { 
+                    facebookOptions.AppId = "560603221391130";
+                    facebookOptions.AppSecret = "3fe64681014137a5526a16d01f560525";
+                })
+                //localhost:55466\signing-facebook
+                .AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
