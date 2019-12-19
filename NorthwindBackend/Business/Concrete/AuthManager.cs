@@ -5,9 +5,14 @@ using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.Jwt;
 using Entities.Dtos;
+using MimeKit;
 using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Text;
+using MailKit.Net.Smtp;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Business.Concrete
 {
@@ -21,6 +26,7 @@ namespace Business.Concrete
             _userService = userService;
             _tokenHelper = tokenHelper;
         }
+
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
@@ -66,7 +72,31 @@ namespace Business.Concrete
                 IsAdmin = true,
             };
             _userService.AddUser(user);
+            this.SendMail(userForRegisterDto.Email);
             return new SuccessDataResult<User>(user,Messages.UserRegistered);
+        }
+
+        public IResult SendMail(string email)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress("Piton-Arge", "pro"));
+            message.To.Add(new MailboxAddress("addi", email));
+            message.Subject = "Piton-EYS";
+            message.Body = new TextPart("plain")
+            {
+                Text = "Piton-Arge Etkinlik Yönetim Sistemini kaydoldunuz."
+        };
+            
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                client.Connect("smtp.gmail.com", 587, false);
+                client.Authenticate("addidagli@gmail.com", "t0ps3cr3t");
+                client.Send(message);
+
+                client.Disconnect(true);
+            }
+
+            return new SuccessResult();
         }
 
         public IResult UserExist(string email)
