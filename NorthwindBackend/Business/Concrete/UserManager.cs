@@ -78,12 +78,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetListFilter(p => userIds.Contains(p.Id)).ToList());
         }
 
-        public IResult DeleteUser(User user, int? firmaId)
+        public IResult UserExist(string email)
         {
-            throw new NotImplementedException();
+            if (this.GetByMail(email) != null)
+            {
+                return new ErrorResult(Messages.UserAlreadyExist);
+            }
+            return new SuccessResult();
         }
 
-        
+
 
         /*public IDataResult<List<User>> GetUserByFirmaId(int firmaId)
         {

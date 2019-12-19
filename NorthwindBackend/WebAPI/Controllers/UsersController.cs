@@ -28,6 +28,11 @@ namespace WebAPI.Controllers
         [HttpPost("adduser")]
         public IActionResult Add(User user)
         {
+            var userExists = _userService.UserExist(user.Email);
+            if (!userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
             //User _user = new User();
             //UserDataUpdate(_user, user);
             var result = _userService.AddUser(user);
