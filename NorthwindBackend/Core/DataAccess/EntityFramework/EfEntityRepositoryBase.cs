@@ -87,9 +87,9 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public void AddFirmaCalisani(User entity,int? firmaId)
+        public void AddFirmaCalisani(User entity,int firmaId)
         {
-            if(firmaId != 0)
+            if(entity.fid != 0)
             {
                 using (var context = new TContext())
                 {
@@ -102,7 +102,6 @@ namespace Core.DataAccess.EntityFramework
                     context.SaveChanges();
                 }
             }
-            
         }
 
         public IList<TEntity> GetListFilter(Expression<Func<TEntity, bool>> filter)

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Core.Entities.Concrete;
+using Core.Utilities.Security.Hashing;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -55,11 +56,35 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("updateuser")]
-        public IActionResult Update(User user, int? firmaId)
+        public IActionResult Update(UserUpdateDto user, int firmaId)
         {
             //User _user = new User();
-           // UserDataUpdate(_user, user);
-            var result = _userService.UpdateUser(user, firmaId);
+            // UserDataUpdate(_user, user);
+            //if(user.Pas)
+            var response = _userService.GetUserById(user.Id);
+            if(!response.Success || response.Data == null)
+                return BadRequest("Kullanıcı bulunamadı");
+
+            var tempUser = response.Data;
+
+            if (user.Sifre != null && user.Sifre != "")
+            {
+                byte[] sifrele, sifrecoz;
+                HashingHelper.CreatePasswordHash(user.Sifre, out sifrele, out sifrecoz);
+                tempUser.Sifrele = sifrele;
+                tempUser.SifreCoz = sifrecoz;
+            }
+
+            tempUser.AdSoyad = user.AdSoyad;
+            tempUser.Email = user.Email;
+            tempUser.Sehir = user.Sehir;
+            tempUser.KullaniciAdi = user.KullaniciAdi;
+            tempUser.fid = user.fid;
+            tempUser.IsAdmin = user.IsAdmin;
+            tempUser.Telefon = user.Telefon;
+            tempUser.Aktif = user.Aktif;
+
+            var result = _userService.UpdateUser(tempUser, firmaId);
             if (result.Success)
             {
                 //FirmaCalisani firmaCalisani = new FirmaCalisani();

@@ -21,7 +21,7 @@ namespace Core.DataAccess
 
         void AddEtkinlik(Etkinlik entity);
 
-        void AddFirmaCalisani(User entity,int? firmaId);
+        void AddFirmaCalisani(User entity,int firmaId);
 
         void Add(T entity);
 

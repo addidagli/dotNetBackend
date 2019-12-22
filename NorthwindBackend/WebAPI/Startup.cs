@@ -66,8 +66,8 @@ namespace WebAPI
                 })*/
                 .AddFacebook(facebookOptions => 
                 { 
-                    facebookOptions.AppId = "560603221391130";
-                    facebookOptions.AppSecret = "3fe64681014137a5526a16d01f560525";
+                    facebookOptions.AppId = "458241478223006";
+                    facebookOptions.AppSecret = "29219c3d498a0e7da596f0628ac8f8c2";
                 })
                 //localhost:55466\signing-facebook
                 .AddCookie();
